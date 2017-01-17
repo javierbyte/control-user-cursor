@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Click of Death</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    body {
+      cursor: url(./assets/transparent.png), default;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    #cursor {
+      opacity: 0;
+      margin-top: -4px;
+      margin-left: -3px;
+    }
+  </style>
+</head>
+<body>
+  <img src="assets/cursor.png" alt="" id='cursor'>
+
+  <script>
+    var cursor = document.querySelector('#cursor')
+    var visibleMouse = false
+
+    window.addEventListener('mouseout', e => {
+      window.requestAnimationFrame(() => {
+        cursor.style.opacity = 0
+        visibleMouse = false
+      })
+    })
+
+    window.addEventListener('mousemove', e => {
+      window.requestAnimationFrame(() => {
+        if (!visibleMouse) {
+          cursor.style.opacity = 1
+          visibleMouse = true
+        }
+        cursor.style.top = e.clientY + 'px'
+        cursor.style.left = e.clientX + 'px'
+      })
+    })
+
+    document.addEventListener('contextmenu', event => event.preventDefault());
+  </script>
+</body>
+</html>
