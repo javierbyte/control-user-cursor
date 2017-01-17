@@ -15,21 +15,76 @@
       cursor: url(./assets/transparent.png), default;
       height: 100vh;
       width: 100vw;
+
+      font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, sans-serif;;
+    }
+
+    .how-this-works {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      text-decoration: none;
+      color: #2980B9;
+      z-index: 2;
+      background: #fff;
+    }
+    .how-this-works:hover {
+      text-decoration: underline;
+      color: #34495E;
     }
 
     #cursor {
       opacity: 0;
       margin-top: -4px;
-      margin-left: -3px;
+      margin-left: -4px;
+      position: fixed;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    body {
+      background: #fff;
+    }
+
+    .clickme {
+      position: fixed;
+      display: block;
+      width: 60px;
+      height: 60px;
+      border-radius: 60px;
+      background: #2980B9;
+      text-align: center;
+      line-height: 60px;
+      top: 50%;
+      left: 50%;
+      margin-top: -30px;
+      margin-left: -30px;
+      text-transform: uppercase;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 12px;
+      color: #fff;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
   <img src="assets/cursor.png" alt="" id='cursor'>
 
+  <a href="" class="clickme">
+    <div>Click ;)</div>
+  </a>
+
+  <a href="https://github.com/javierbyte/click-of-death" class="how-this-works">
+    How this works?
+  </a>
+
   <script>
     var cursor = document.querySelector('#cursor')
     var visibleMouse = false
+
+    var wX = window.innerWidth
+    var wY = window.innerHeight
 
     window.addEventListener('mouseout', e => {
       window.requestAnimationFrame(() => {
@@ -44,8 +99,27 @@
           cursor.style.opacity = 1
           visibleMouse = true
         }
-        cursor.style.top = e.clientY + 'px'
-        cursor.style.left = e.clientX + 'px'
+
+        var newY = e.clientY
+        var newX = e.clientX
+
+        var distanceX = wX / 2 - newX
+        var distanceY = wY / 2 - newY
+
+        var xFactor = (distanceX / (wX / 2))
+        var yFactor = (distanceY / (wY / 2))
+
+        var xFactorFinal = (1 - Math.abs(xFactor)) * (xFactor / Math.abs(xFactor))
+        var yFactorFinal = (1 - Math.abs(yFactor)) * (yFactor / Math.abs(yFactor))
+
+        var distanceValue = (1 - Math.abs(xFactor)) * (1 - Math.abs(yFactor))
+        distanceValue = Math.max(distanceValue - 1/3, 0) * 3/2
+
+        var distanceFactor = Math.pow(distanceValue, 2) * 40
+        distanceFactor = distanceFactor > 0.1 ? distanceFactor : 0
+
+        cursor.style.left = Math.round(newX - xFactorFinal * distanceFactor) + 'px'
+        cursor.style.top = Math.round(newY - yFactorFinal * distanceFactor) + 'px'
       })
     })
 
