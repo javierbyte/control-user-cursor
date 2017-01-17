@@ -86,6 +86,11 @@
     var wX = window.innerWidth
     var wY = window.innerHeight
 
+    window.addEventListener('resize', e => {
+      wX = window.innerWidth
+      wY = window.innerHeight
+    })
+
     window.addEventListener('mouseout', e => {
       window.requestAnimationFrame(() => {
         cursor.style.opacity = 0
@@ -100,26 +105,23 @@
           visibleMouse = true
         }
 
-        var newY = e.clientY
         var newX = e.clientX
+        var newY = e.clientY
 
-        var distanceX = wX / 2 - newX
-        var distanceY = wY / 2 - newY
+        var distanceX = newX - wX / 2
+        var distanceY = newY - wY / 2
 
-        var xFactor = (distanceX / (wX / 2))
-        var yFactor = (distanceY / (wY / 2))
+        var distanceRatioX = Math.abs(newX - (wX/2)) / wX * 2
+        var distanceRatioY = Math.abs(newY - (wY/2)) / wY * 2
 
-        var xFactorFinal = (1 - Math.abs(xFactor)) * (xFactor / Math.abs(xFactor))
-        var yFactorFinal = (1 - Math.abs(yFactor)) * (yFactor / Math.abs(yFactor))
+        var distanceValueX = (1 - distanceRatioX) * 38 * distanceX / Math.abs(distanceX)
+        var distanceValueY = (1 - distanceRatioY) * 38 * distanceY / Math.abs(distanceY)
 
-        var distanceValue = (1 - Math.abs(xFactor)) * (1 - Math.abs(yFactor))
-        distanceValue = Math.max(distanceValue - 1/3, 0) * 3/2
+        var ponderedValueX = Math.pow((1 - distanceRatioX), 4)
+        var ponderedValueY = Math.pow((1 - distanceRatioY), 4)
 
-        var distanceFactor = Math.pow(distanceValue, 2) * 40
-        distanceFactor = distanceFactor > 0.1 ? distanceFactor : 0
-
-        cursor.style.left = Math.round(newX - xFactorFinal * distanceFactor) + 'px'
-        cursor.style.top = Math.round(newY - yFactorFinal * distanceFactor) + 'px'
+        cursor.style.left = Math.round(newX + ponderedValueY * distanceValueX) + 'px'
+        cursor.style.top = Math.round(newY + ponderedValueX * distanceValueY) + 'px'
       })
     })
 
