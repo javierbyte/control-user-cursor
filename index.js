@@ -107,8 +107,8 @@ function diffAndAngleToXY(diff, angle, offset) {
   const realOffset = offset > 4 ? Math.max(offset, 0) : 0;
 
   return {
-    x: Math.round(Math.cos(angle) * (diff + realOffset)),
-    y: Math.round(Math.sin(angle) * (diff + realOffset))
+    x: (Math.cos(angle) * (diff + realOffset)),
+    y: (Math.sin(angle) * (diff + realOffset))
   };
 }
 
@@ -147,8 +147,8 @@ function calculateNewCursor(newCursor) {
       };
     }
 
-    calculatedCursor.x = calculatedCursor.x - newCursor.x + Math.round(objCenter.x - xyDiff.x);
-    calculatedCursor.y = calculatedCursor.y - newCursor.y + Math.round(objCenter.y - xyDiff.y);
+    calculatedCursor.x = Math.round(calculatedCursor.x - newCursor.x + (objCenter.x - xyDiff.x));
+    calculatedCursor.y = Math.round(calculatedCursor.y - newCursor.y + (objCenter.y - xyDiff.y));
   });
 
   return calculatedCursor;
@@ -223,8 +223,8 @@ function onUpdateElementSizes() {
       // update element internal vals
       C.elToTrack[key]._clientRect = clientRect;
       C.elToTrack[key]._center = {
-        x: Math.round(clientRect.left + clientRect.width / 2),
-        y: Math.round(clientRect.top + clientRect.height / 2)
+        x: (clientRect.left + clientRect.width / 2),
+        y: (clientRect.top + clientRect.height / 2)
       };
       C.elToTrack[key]._size = Math.max(clientRect.width, clientRect.height);
     });
