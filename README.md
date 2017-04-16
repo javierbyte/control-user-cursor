@@ -25,6 +25,7 @@ ControlUserCursor({
     }
   }
 });
+```
 
 This will replace the real cursor with the fake one and activate the 'repel' and 'attract' behavior on the selected dom elements.
 
