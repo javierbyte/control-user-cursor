@@ -211,12 +211,7 @@ function onMouseMove(evt) {
 
 function onClick() {
   const clickedEl = document.querySelector('.-hover');
-
-  clickedEl.innerHTML = ':D';
-
-  window.setTimeout(() => {
-    clickedEl.innerHTML = 'GRAVITY!';
-  }, 250);
+  clickedEl.innerHTML = clickedEl.innerHTML === ':D' ? 'GRAVITY!' : ':D';
 }
 
 function onUpdateElementSizes() {
