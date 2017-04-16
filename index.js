@@ -314,3 +314,7 @@ Array.from(document.querySelectorAll('.options-element')).forEach(option => {
     setup(kConfig[option.dataset.type]);
   });
 });
+
+if ('ontouchstart' in document.documentElement) {
+  document.querySelector('.info-description').innerHTML += "<div><i>Doesn't work on touchscreens tho...</i>";
+}
