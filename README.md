@@ -34,15 +34,15 @@ This will replace the real cursor with the fake one and activate the 'repel' and
 I would like to update the API to be like this:
 
 ```js
-	// initiate cursor control
-	ControlUserCursor()
-		.repel('repel', document.querySelector('.el-to-repel'))
-		.repel('repel', document.querySelector('.other-el-to-repeal'))
-		.attract('attract-buy', document.querySelector('.el-to-attract'));
+// initiate cursor control
+ControlUserCursor()
+	.repel('repel', document.querySelector('.el-to-repel'))
+	.repel('repel', document.querySelector('.other-el-to-repeal'))
+	.attract('attract-buy', document.querySelector('.el-to-attract'));
 
-	// stop `document.querySelector('.el-to-repel')` control
-	controlUserCursor.stop('repel');
+// stop `document.querySelector('.el-to-repel')` control
+controlUserCursor.stop('repel');
 
-	// once there all the controls are stopped, the fake cursor disappears 
-	controlUserCursor.stopAll();
+// once there all the controls are stopped, the fake cursor disappears 
+controlUserCursor.stopAll();
 ```
