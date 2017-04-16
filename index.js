@@ -60,7 +60,7 @@ function setCursor(cursorConfig) {
 }
 
 // global
-const C = {};
+window.C = {};
 
 C.containerEl = document.querySelector('#container');
 C.el = document.createElement('img');
