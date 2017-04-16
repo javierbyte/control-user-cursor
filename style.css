@@ -4,59 +4,108 @@
   position: relative
 }
 
-body {
+* {
   cursor: url(./assets/transparent.png), default;
+  user-select: none;
+  z-index: 2;
+}
+
+body {
   height: 100vh;
   width: 100vw;
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, sans-serif
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, sans-serif;
+  background-color: #ecf0f1;
 }
 
-.how-this-works {
+.info {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  text-decoration: none;
-  color: #2980B9;
-  z-index: 2;
-  background: #fff
+  top: 1rem;
+  left: 1rem;
 }
 
-.how-this-works:hover {
-  text-decoration: underline;
-  color: #34495E
+.info-title {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  font-weight: 300;
+  padding-bottom: 0.618rem;
+}
+
+.info-description {
+  font-size: 1rem;
+  color: #7f8c8d;
+}
+
+.options {
+  border: 1px solid #bdc3c7;
+  border-radius: 2px;
+  height: 2rem;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+.options-element {
+  height: 2rem;
+  line-height: 2rem;
+  padding: 0 1rem;
+  border-right: 1px solid #bdc3c7;
+  float: left;
+}
+
+.options-element:last-of-type {
+  border-right: none;
+}
+
+.options-element.-active {
+  background-color: #fff;
+  font-weight: 500;
 }
 
 #cursor {
   opacity: 0;
-  margin-top: -4px;
-  margin-left: -4px;
+  margin-top: -2px;
+  margin-left: -2px;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
-  cursor: url(./assets/transparent.png), default
-}
-
-body {
-  background: #fff
 }
 
 .clickme {
   position: fixed;
   display: block;
-  width: 60px;
-  height: 60px;
-  border-radius: 60px;
+  width: 64px;
+  height: 64px;
+  border-radius: 64px;
   background: #2980B9;
   text-align: center;
-  line-height: 60px;
+  line-height: 64px;
   top: 50%;
   left: 50%;
-  margin-top: -30px;
-  margin-left: -30px;
+  margin-top: -32px;
+  margin-left: -32px;
   text-transform: uppercase;
   font-weight: 700;
   text-decoration: none;
   font-size: 12px;
   color: #fff;
-  pointer-events: none
+  pointer-events: none;
+  font-weight: 500;
+}
+
+.clickme.-alt1 {
+  top: 40%;
+  left: 40%;
+}
+
+.clickme.-alt2 {
+  top: 60%;
+  left: 60%;
+}
+
+.clickme.-nope {
+  background: #c0392b;
+}
+
+.clickme.-hover {
+  opacity: 0.8;
 }
