@@ -4,75 +4,12 @@
   <meta charset="UTF-8">
   <title>Click of Death</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      position: relative;
-    }
-
-    body {
-      cursor: url(./assets/transparent.png), default;
-      height: 100vh;
-      width: 100vw;
-
-      font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, sans-serif;;
-    }
-
-    .how-this-works {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      text-decoration: none;
-      color: #2980B9;
-      z-index: 2;
-      background: #fff;
-    }
-    .how-this-works:hover {
-      text-decoration: underline;
-      color: #34495E;
-    }
-
-    #cursor {
-      opacity: 0;
-      margin-top: -4px;
-      margin-left: -4px;
-      position: fixed;
-      z-index: 1;
-      pointer-events: none;
-      cursor: url(./assets/transparent.png), default;
-    }
-
-    body {
-      background: #fff;
-    }
-
-    .clickme {
-      position: fixed;
-      display: block;
-      width: 60px;
-      height: 60px;
-      border-radius: 60px;
-      background: #2980B9;
-      text-align: center;
-      line-height: 60px;
-      top: 50%;
-      left: 50%;
-      margin-top: -30px;
-      margin-left: -30px;
-      text-transform: uppercase;
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 12px;
-      color: #fff;
-      pointer-events: none;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <img src="assets/cursor.png" alt="" id='cursor'>
 
-  <a href="" class="clickme">
+  <a id="buttonToPrevent" href="" class="clickme">
     <div>Click ;)</div>
   </a>
 
@@ -80,53 +17,6 @@
     How this works?
   </a>
 
-  <script>
-    var cursor = document.querySelector('#cursor')
-    var visibleMouse = false
-
-    var wX = window.innerWidth
-    var wY = window.innerHeight
-
-    window.addEventListener('resize', e => {
-      wX = window.innerWidth
-      wY = window.innerHeight
-    })
-
-    window.addEventListener('mouseout', e => {
-      window.requestAnimationFrame(() => {
-        cursor.style.opacity = 0
-        visibleMouse = false
-      })
-    })
-
-    window.addEventListener('mousemove', e => {
-      window.requestAnimationFrame(() => {
-        if (!visibleMouse) {
-          cursor.style.opacity = 1
-          visibleMouse = true
-        }
-
-        var newX = e.clientX
-        var newY = e.clientY
-
-        var distanceX = newX - wX / 2
-        var distanceY = newY - wY / 2
-
-        var distanceRatioX = Math.abs(newX - (wX/2)) / wX * 2
-        var distanceRatioY = Math.abs(newY - (wY/2)) / wY * 2
-
-        var distanceValueX = (1 - distanceRatioX) * 38 * distanceX / Math.abs(distanceX)
-        var distanceValueY = (1 - distanceRatioY) * 38 * distanceY / Math.abs(distanceY)
-
-        var ponderedValueX = Math.pow((1 - distanceRatioX), 4)
-        var ponderedValueY = Math.pow((1 - distanceRatioY), 4)
-
-        cursor.style.left = Math.round(newX + ponderedValueY * distanceValueX) + 'px'
-        cursor.style.top = Math.round(newY + ponderedValueX * distanceValueY) + 'px'
-      })
-    })
-
-    document.addEventListener('contextmenu', event => event.preventDefault());
-  </script>
+  <script src="index.js"></script>
 </body>
 </html>
