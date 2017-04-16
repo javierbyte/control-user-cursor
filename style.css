@@ -5,7 +5,7 @@
 }
 
 * {
-  cursor: url(./assets/transparent.png), default;
+  cursor: url(./assets/16.png), default;
   user-select: none;
   z-index: 2;
 }
