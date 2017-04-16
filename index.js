@@ -316,5 +316,5 @@ Array.from(document.querySelectorAll('.options-element')).forEach(option => {
 });
 
 if ('ontouchstart' in document.documentElement) {
-  document.querySelector('.info-description').innerHTML += "<div><i>Doesn't work on touchscreens tho...</i>";
+  document.querySelector('.info-description').innerHTML += "<div><b><i>Doesn't work on touchscreens tho...</i></b></div>";
 }
