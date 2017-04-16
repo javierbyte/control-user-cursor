@@ -322,7 +322,7 @@ Array.from(document.querySelectorAll('.options-element')).forEach(option => {
   });
 });
 
-if ('ontouchstart' in document.documentElement) {
+if (true || 'ontouchstart' in document.documentElement) {
   document.querySelector('.info-description').innerHTML +=
-    "<div><b><i>Doesn't work on touchscreens tho...</i></b></div>";
+    "<div style='color:#c0392b'><b><i>Doesn't work with touchscreens tho... :(</i></b></div>";
 }
