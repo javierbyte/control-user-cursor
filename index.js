@@ -162,7 +162,7 @@ function calculateNewCursor(newCursor) {
   };
 }
 
-// iterate over the elements to see if we we need to hover anyone
+// iterate over the elements to see if we need to hover anyone
 function calculateHover(newCursor) {
   C.elToTrackKeys.map(key => {
     const trackedObj = C.elToTrack[key];
