@@ -107,8 +107,8 @@ function diffAndAngleToXY(diff, angle, offset) {
   const realOffset = offset > 4 ? Math.max(offset, 0) : 0;
 
   return {
-    x: (Math.cos(angle) * (diff + realOffset)),
-    y: (Math.sin(angle) * (diff + realOffset))
+    x: Math.cos(angle) * (diff + realOffset),
+    y: Math.sin(angle) * (diff + realOffset)
   };
 }
 
@@ -209,6 +209,16 @@ function onMouseMove(evt) {
   });
 }
 
+function onClick() {
+  const clickedEl = document.querySelector('.-hover');
+
+  clickedEl.innerHTML = ':D';
+
+  window.setTimeout(() => {
+    clickedEl.innerHTML = 'GRAVITY!';
+  }, 250);
+}
+
 function onUpdateElementSizes() {
   window.requestAnimationFrame(() => {
     // update the window size values
@@ -223,14 +233,15 @@ function onUpdateElementSizes() {
       // update element internal vals
       C.elToTrack[key]._clientRect = clientRect;
       C.elToTrack[key]._center = {
-        x: (clientRect.left + clientRect.width / 2),
-        y: (clientRect.top + clientRect.height / 2)
+        x: clientRect.left + clientRect.width / 2,
+        y: clientRect.top + clientRect.height / 2
       };
       C.elToTrack[key]._size = Math.max(clientRect.width, clientRect.height);
     });
   });
 }
 
+window.addEventListener('click', onClick);
 window.addEventListener('resize', onUpdateElementSizes);
 window.addEventListener('mouseout', onMouseOut);
 window.addEventListener('contextmenu', event => event.preventDefault());
@@ -303,11 +314,7 @@ setup(kConfig.basic);
 window.addEventListener('mousemove', onMouseMove);
 
 Array.from(document.querySelectorAll('.options-element')).forEach(option => {
-  console.log('adding listeners');
-
   option.addEventListener('click', () => {
-    console.log('clickeooo');
-
     document.querySelector('.options-element.-active').classList.remove('-active');
     option.classList.add('-active');
 
@@ -316,5 +323,6 @@ Array.from(document.querySelectorAll('.options-element')).forEach(option => {
 });
 
 if ('ontouchstart' in document.documentElement) {
-  document.querySelector('.info-description').innerHTML += "<div><b><i>Doesn't work on touchscreens tho...</i></b></div>";
+  document.querySelector('.info-description').innerHTML +=
+    "<div><b><i>Doesn't work on touchscreens tho...</i></b></div>";
 }

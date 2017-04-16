@@ -7,6 +7,7 @@
 * {
   cursor: url(./assets/16.png), default;
   user-select: none;
+  -webkit-user-select: none;
   z-index: 2;
 }
 
