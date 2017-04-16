@@ -103,15 +103,6 @@ function getPolarity(num) {
   return num >= 0 ? 1 : -1;
 }
 
-function diffAndAngleToXY(diff, angle, offset) {
-  const realOffset = offset > 4 ? Math.max(offset, 0) : 0;
-
-  return {
-    x: Math.cos(angle) * (diff + realOffset),
-    y: Math.sin(angle) * (diff + realOffset)
-  };
-}
-
 function getDiff(obj1, obj2) {
   const diffX = obj1.x - obj2.x;
   const diffY = obj1.y - obj2.y;
@@ -134,12 +125,20 @@ function calculateNewCursor(newCursor) {
 
     const importance = Math.pow(1 - Math.min(1, Math.max(diff / C.wZ, 0)), C.expoWeight);
 
+    if (importance < 0.001) {
+      return newCursor;
+    }
+
     let xyDiff;
 
     if (objBehavior === 'REPEL') {
       const angle = Math.atan2(objCenter.y - newCursor.y, objCenter.x - newCursor.x);
+      const offset = objSize * importance / 1.4142;
 
-      xyDiff = diffAndAngleToXY(diff, angle, objSize * importance / 1.4142);
+      xyDiff = {
+        x: Math.cos(angle) * (diff + offset),
+        y: Math.sin(angle) * (diff + offset)
+      };
     } else {
       xyDiff = {
         x: objCenter.x - (objCenter.x * importance + newCursor.x * (1 - importance)),
@@ -211,6 +210,9 @@ function onMouseMove(evt) {
 
 function onClick() {
   const clickedEl = document.querySelector('.-hover');
+
+  if (!clickedEl) return;
+
   clickedEl.innerHTML = clickedEl.innerHTML === ':D' ? 'GRAVITY!' : ':D';
 }
 
