@@ -6,6 +6,8 @@
 
 * {
   cursor: url(./assets/16.png), default;
+  cursor: none;
+  -moz-user-select: none;
   user-select: none;
   -webkit-user-select: none;
   z-index: 2;
