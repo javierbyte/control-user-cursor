@@ -76,23 +76,29 @@ C.elToTrackKeys = Object.keys(C.elToTrack);
 
 C.isMouseVisible = false;
 
-function setup(config) {
+function ControlUserCursor(config, createElements) {
   const elConfig = config.el;
 
-  C.expoWeight = config.expoWeight;
+  C.expoWeight = config.expoWeight || 2;
 
-  C.containerEl.innerHTML = '';
+  if (createElements) {
+    C.containerEl.innerHTML = '';
+  }
 
   C.elToTrack = elConfig;
 
   C.elToTrackKeys = Object.keys(C.elToTrack);
   C.elToTrackKeys.map(key => {
-    C.elToTrack[key].el = document.createElement('div');
-    C.elToTrack[key].el.className = elConfig[key].className.join(' ');
-    C.elToTrack[key].el.innerHTML = elConfig[key].innerHTML;
+    if (elConfig[key].el === undefined) {
+      C.elToTrack[key].el = document.createElement('div');
+      C.elToTrack[key].el.className = elConfig[key].className.join(' ');
+      C.elToTrack[key].el.innerHTML = elConfig[key].innerHTML;
+    }
     C.elToTrack[key]._hover = false;
 
-    C.containerEl.appendChild(C.elToTrack[key].el);
+    if (createElements) {
+      C.containerEl.appendChild(C.elToTrack[key].el);
+    }
   });
 
   onUpdateElementSizes();
@@ -310,19 +316,5 @@ const kConfig = {
   }
 };
 
-setup(kConfig.basic);
+ControlUserCursor(kConfig.basic, true);
 window.addEventListener('mousemove', onMouseMove);
-
-Array.from(document.querySelectorAll('.options-element')).forEach(option => {
-  option.addEventListener('click', () => {
-    document.querySelector('.options-element.-active').classList.remove('-active');
-    option.classList.add('-active');
-
-    setup(kConfig[option.dataset.type]);
-  });
-});
-
-if (true || 'ontouchstart' in document.documentElement) {
-  document.querySelector('.info-description').innerHTML +=
-    "<div style='color:#c0392b'><b><i>Doesn't work with touchscreens tho... :(</i></b></div>";
-}
