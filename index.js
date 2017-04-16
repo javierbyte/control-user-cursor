@@ -146,11 +146,14 @@ function calculateNewCursor(newCursor) {
       };
     }
 
-    calculatedCursor.x = Math.round(calculatedCursor.x - newCursor.x + (objCenter.x - xyDiff.x));
-    calculatedCursor.y = Math.round(calculatedCursor.y - newCursor.y + (objCenter.y - xyDiff.y));
+    calculatedCursor.x = calculatedCursor.x - newCursor.x + (objCenter.x - xyDiff.x);
+    calculatedCursor.y = calculatedCursor.y - newCursor.y + (objCenter.y - xyDiff.y);
   });
 
-  return calculatedCursor;
+  return {
+    x: Math.round(calculatedCursor.x),
+    y: Math.round(calculatedCursor.y)
+  };
 }
 
 // iterate over the elements to see if we we need to hover anyone
@@ -166,12 +169,12 @@ function calculateHover(newCursor) {
 
     const isHovering = calculatedDiff < trackedObj._size / 2;
 
-    if (isHovering && trackedObj._hover === false) {
+    if (isHovering === true && trackedObj._hover === false) {
       setCursor(C.cursorConfig.pointer);
 
       trackedObj._hover = true;
       trackedObj.el.classList.add('-hover');
-    } else if (!isHovering && trackedObj._hover === true) {
+    } else if (isHovering === false && trackedObj._hover === true) {
       setCursor(C.cursorConfig.normal);
 
       trackedObj._hover = false;
@@ -203,8 +206,8 @@ function onMouseMove(evt) {
 
     calculateHover(calculatedCursor);
 
-    C.el.style.left = calculatedCursor.x + 'px';
-    C.el.style.top = calculatedCursor.y + 'px';
+    C.el.style.transform =
+      'translatex(' + calculatedCursor.x + 'px) translatey(' + calculatedCursor.y + 'px)';
   });
 }
 
