@@ -6,3 +6,4 @@ Small experiment to alter the cursor behavior.
 ## How it works?
 I make the user cursor invisible, and then paint my own cursor with JS! The `:hover` styles are also fake.
 
+Most of the math is here https://github.com/javierbyte/control-user-cursor/blob/master/index.js#L134

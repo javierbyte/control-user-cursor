@@ -18,6 +18,20 @@ body {
   background-color: #ecf0f1;
 }
 
+a {
+  color: #2980b9;
+}
+
+a:hover {
+  color: #3498db;
+}
+
+.how-it-works {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+}
+
 .info {
   position: fixed;
   top: 1rem;

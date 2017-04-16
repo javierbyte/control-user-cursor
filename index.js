@@ -139,7 +139,7 @@ function calculateNewCursor(newCursor) {
         x: Math.cos(angle) * (diff + offset),
         y: Math.sin(angle) * (diff + offset)
       };
-    } else {
+    } else if (objBehavior === 'ATTRACT') {
       xyDiff = {
         x: objCenter.x - (objCenter.x * importance + newCursor.x * (1 - importance)),
         y: objCenter.y - (objCenter.y * importance + newCursor.y * (1 - importance))
@@ -158,7 +158,7 @@ function calculateHover(newCursor) {
   C.elToTrackKeys.map(key => {
     const trackedObj = C.elToTrack[key];
 
-    if (trackedObj.behavior !== 'ATRACT') {
+    if (trackedObj.behavior !== 'ATTRACT') {
       return;
     }
 
@@ -263,7 +263,7 @@ const kConfig = {
         className: ['clickme', '-nope']
       }
     },
-    expoWeight: 0.8
+    expoWeight: 1
   },
   doble: {
     el: {
@@ -280,15 +280,15 @@ const kConfig = {
     },
     expoWeight: 2
   },
-  atract: {
+  attract: {
     el: {
-      buttonToAtract: {
-        behavior: 'ATRACT',
+      buttonToAttract: {
+        behavior: 'ATTRACT',
         innerHTML: 'Gravity!',
         className: ['clickme']
       }
     },
-    expoWeight: 2.2
+    expoWeight: 2
   },
   combined: {
     el: {
@@ -297,13 +297,13 @@ const kConfig = {
         innerHTML: 'Nope :P',
         className: ['clickme', '-nope', '-alt1']
       },
-      buttonToAtract: {
-        behavior: 'ATRACT',
+      buttonToAttract: {
+        behavior: 'ATTRACT',
         innerHTML: 'Gravity!',
         className: ['clickme', '-alt2']
       }
     },
-    expoWeight: 2.2
+    expoWeight: 2
   }
 };
 
