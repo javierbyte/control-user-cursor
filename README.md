@@ -1,7 +1,7 @@
 # Control User Cursor.
 Small experiment to alter the cursor behavior.
 
-[![control-user-cursor](docs-assets/screenshot.png)](http://javier.xyz/control-user-cursor/)
+[![control-user-cursor](docs-assets/thumbnail.jpg)](http://javier.xyz/control-user-cursor/)
 
 ## How it works?
 I make the user cursor invisible, and then paint my own cursor with JS! The `:hover` styles are also fake.
@@ -43,6 +43,6 @@ ControlUserCursor()
 // stop `document.querySelector('.el-to-repel')` control
 controlUserCursor.stop('repel');
 
-// once there all the controls are stopped, the fake cursor disappears 
+// once there all the controls are stopped, the fake cursor disappears
 controlUserCursor.stopAll();
 ```
