@@ -23,7 +23,7 @@ body {
     sans-serif;
   background-color: #f8f8f8;
   color: #000;
-  background-image: url(./assets/bg.svg);
+  background-image: url(/control-user-cursor/assets/bg.svg);
   background-repeat: repeat;
 }
 

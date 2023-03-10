@@ -3,36 +3,36 @@
 const ASSET_CONFIG = {
   mac_retina: {
     normal: {
-      src: 'assets/mac_retina.png',
+      src: '/control-user-cursor/assets/mac_retina.png',
       height: '22px',
       width: '15px',
     },
     pointer: {
-      src: 'assets/mac_pointer_retina.png',
+      src: '/control-user-cursor/assets/mac_pointer_retina.png',
       width: '18.5px',
       height: '19.5px',
     },
   },
   mac: {
     normal: {
-      src: 'assets/mac.png',
+      src: '/control-user-cursor/assets/mac.png',
       width: '15px',
       height: '22px',
     },
     pointer: {
-      src: 'assets/mac_pointer.png',
+      src: '/control-user-cursor/assets/mac_pointer.png',
       width: '18px',
       height: '19px',
     },
   },
   other: {
     normal: {
-      src: 'assets/other.png',
+      src: '/control-user-cursor/assets/other.png',
       width: '17px',
       height: '23px',
     },
     pointer: {
-      src: 'assets/other_pointer.png',
+      src: '/control-user-cursor/assets/other_pointer.png',
       width: '22px',
       height: '26px',
     },
